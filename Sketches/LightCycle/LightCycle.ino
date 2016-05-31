@@ -6,7 +6,7 @@
 #define PIN 6 // PIN definition 
 #define NUMPIXELS 60 // Number of pixels
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800); // NeoPixel set-up
-int delayval = 1000; // Delay time to start
+int delayval = 10; // Delay time to start. Set to 10 for demo.
 int rateOfChange = 94; //seconds per increase or decrease
 
 //SETUP:
@@ -15,8 +15,8 @@ void setup() {
   pixels.begin(); 
 }
 
+//LIGHTS: 
 void setAll(int r,int g,int b) {
-  pixels.setPixelColor(0, pixels.Color(r, g ,b));
   pixels.setPixelColor(1, pixels.Color(r, g ,b));
   pixels.setPixelColor(2, pixels.Color(r, g ,b));
   pixels.setPixelColor(3, pixels.Color(r, g ,b));
@@ -85,8 +85,8 @@ int r = 255; // Red RGB
 int g = 0; // Green RGB
 int b = 0; // Blue RGB
 
-for (int i =0; i < 21600; i++){ // Midnight -> Sunrise
-  if(i%94 == 0){
+for (int i = 0; i < 21600; i++){ // Midnight -> Sunrise
+  if(i%rateOfChange == 0){
   g++;
       setAll(r, g ,b);//start 0,255,0 end 0,255,255
       pixels.show();
@@ -94,8 +94,8 @@ for (int i =0; i < 21600; i++){ // Midnight -> Sunrise
   }
 }
 
-for (int i =0; i < 21600; i++){ // Sunrise -> Noon
-  if(i%94 == 0){
+for (int i = 0; i < 21600; i++){ // Sunrise -> Noon
+  if(i%rateOfChange == 0){
   r--;
   b++;
       setAll(r, g ,b);//start 0,255,0 end 0,255,255
@@ -104,23 +104,23 @@ for (int i =0; i < 21600; i++){ // Sunrise -> Noon
   }
 }
 
-for (int i =0; i < 21600; i++){ // Noon -> Sunset
-  if(i%94 == 0){
+for (int i = 0; i < 21600; i++){ // Noon -> Sunset
+  if(i%rateOfChange == 0){
   r++;
   b--;
-      setAll(r, g ,b);//start 0,255,0 end 0,255,255
+      setAll(r, g ,b); // start 0,255,0 end 0,255,255
       pixels.show();
       delay(delayval);
   }
 }
 
-for (int i =0; i < 21600; i++){ // Sunset -> Midnight
-  if(i%94 == 0){
+for (int i = 0; i < 21600; i++){ // Sunset -> Midnight
+  if(i%rateOfChange == 0){
   g--;
-      setAll(r, g ,b);//start 0,255,0 end 0,255,255
+      setAll(r, g, b); //start 0,255,0 end 0,255,255
       pixels.show();
       delay(delayval);
+    }
   }
-}
 } // end day
 
