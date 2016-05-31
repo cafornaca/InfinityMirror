@@ -38,4 +38,8 @@ void loop() {
           delay(delayval);
         
       }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c3beb90c5f974876ff405a90be93ed8e43ef0848
