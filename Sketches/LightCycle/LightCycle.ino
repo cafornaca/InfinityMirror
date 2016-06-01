@@ -6,7 +6,7 @@
 #define PIN 6 // PIN definition 
 #define NUMPIXELS 60 // Number of pixels
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800); // NeoPixel set-up
-int delayval = 10; // Delay time to start. Set to 10 for demo.
+int delayval = 1000; // Delay time to start. Set to 10 for demo.
 int rateOfChange = 94; //seconds per increase or decrease
 
 //SETUP:
@@ -85,42 +85,47 @@ int r = 255; // Red RGB
 int g = 0; // Green RGB
 int b = 0; // Blue RGB
 
-for (int i = 0; i < 21600; i++){ // Midnight -> Sunrise
+for (int i = 0; i < 21600000; i++){ // Midnight -> Sunrise
   if(i%rateOfChange == 0){
   g++;
       setAll(r, g ,b);//start 0,255,0 end 0,255,255
       pixels.show();
-      delay(delayval);
+
   }
+        delay(delayval);
 }
 
-for (int i = 0; i < 21600; i++){ // Sunrise -> Noon
+for (int i = 0; i < 21600000; i++){ // Sunrise -> Noon
   if(i%rateOfChange == 0){
   r--;
   b++;
       setAll(r, g ,b);//start 0,255,0 end 0,255,255
       pixels.show();
-      delay(delayval);
+
   }
+        delay(delayval);
 }
 
-for (int i = 0; i < 21600; i++){ // Noon -> Sunset
+for (int i = 0; i < 21600000; i++){ // Noon -> Sunset
   if(i%rateOfChange == 0){
   r++;
   b--;
       setAll(r, g ,b); // start 0,255,0 end 0,255,255
       pixels.show();
-      delay(delayval);
+
   }
+        delay(delayval);
 }
 
-for (int i = 0; i < 21600; i++){ // Sunset -> Midnight
+for (int i = 0; i < 21600000; i++){ // Sunset -> Midnight
   if(i%rateOfChange == 0){
   g--;
       setAll(r, g, b); //start 0,255,0 end 0,255,255
       pixels.show();
-      delay(delayval);
+
     }
+       delay(delayval);
   }
+ 
 } // end day
 
